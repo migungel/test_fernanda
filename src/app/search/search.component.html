@@ -1,0 +1,22 @@
+<div>
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    placeholder="Buscar platillo..."
+  />
+  <button (click)="searchMeals()">Buscar</button>
+
+  <select (change)="filterMeals($event)">
+    <option value="">Busca por categorías</option>
+    <option *ngFor="let category of categories" [value]="category.strCategory">
+      {{ category.strCategory }}
+    </option>
+  </select>
+
+  <div *ngFor="let meal of meals">
+    <img [src]="meal.strMealThumb" alt="{{ meal.strMeal }}" />
+    <h3>{{ meal.strMeal }}</h3>
+    <p>{{ meal.strCategory }}</p>
+    <a [routerLink]="['/details', meal.idMeal]">Ver detalles</a>
+  </div>
+</div>
